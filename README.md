@@ -1,7 +1,7 @@
 # Garmin-ExampleApp-Swift
-A Swift 3 version of Garmin's Connect IQ iOS Example App, demonstrating use of the Connect IQ iOS SDK.
+A Swift 5 version of Garmin's Connect IQ iOS Example App, demonstrating use of the Connect IQ iOS SDK.
 
-This project is a fully-functional Swift 3 port of [Garmin's iOS Example App](https://developer.garmin.com/connect-iq/sdk/), which is offered only in Objective-C.
+This project is a fully-functional Swift 5 port of [Garmin's iOS Example App](https://developer.garmin.com/connect-iq/sdk/), which is offered only in Objective-C.
 
 More details on the Connect IQ iOS SDK can be found at [Garmin's documentation for the Connect IQ iOS SDK](https://developer.garmin.com/connect-iq/developer-tools/ios-sdk-guide/).
 

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SwiftUI/Garmin-ExampleApp-SwiftUI.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Garmin-ExampleApp-Swift.xcodeproj">
    </FileRef>
 </Workspace>

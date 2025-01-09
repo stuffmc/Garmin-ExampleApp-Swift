@@ -79,7 +79,13 @@
 		F01F14E81DB5E01C0076EBE6 = {
 			isa = PBXGroup;
 			children = (
-				F01F14F31DB5E01C0076EBE6 /* Source */,
+				F0709DC71E1A097A00D255F5 /* AppDelegate.swift */,
+				F0709DE11E1A097A00D255F5 /* Constants.swift */,
+				F0709E231E1A0CDD00D255F5 /* LaunchScreen.storyboard */,
+				F0709E1D1E1A0AEE00D255F5 /* Device List */,
+				F0709E1E1E1A0AFD00D255F5 /* App List */,
+				F0709E1F1E1A0B0C00D255F5 /* App Message */,
+				F0709E201E1A0B3700D255F5 /* Supporting Files */,
 				F01F14F21DB5E01C0076EBE6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,21 +96,6 @@
 				F01F14F11DB5E01C0076EBE6 /* Garmin-ExampleApp-Swift.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F01F14F31DB5E01C0076EBE6 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				F0709DC71E1A097A00D255F5 /* AppDelegate.swift */,
-				F0709DE11E1A097A00D255F5 /* Constants.swift */,
-				F0709E231E1A0CDD00D255F5 /* LaunchScreen.storyboard */,
-				F0709E1D1E1A0AEE00D255F5 /* Device List */,
-				F0709E1E1E1A0AFD00D255F5 /* App List */,
-				F0709E1F1E1A0B0C00D255F5 /* App Message */,
-				F0709E201E1A0B3700D255F5 /* Supporting Files */,
-			);
-			name = Source;
-			path = "Cruise di2";
 			sourceTree = "<group>";
 		};
 		F0709E1D1E1A0AEE00D255F5 /* Device List */ = {

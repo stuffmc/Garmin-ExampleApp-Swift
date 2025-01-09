@@ -5,10 +5,10 @@ import UIKit
 class Garmin: NSObject {
     private let URLScheme = "lactate-express"
     var devices = [IQDevice]()
-    var devicesChanged: (() -> Void)?
 
-    init(_ devicesChanged: (() -> Void)? = nil) {
-        self.devicesChanged = devicesChanged
+    override init() {
+        super.init()
+        ConnectIQ.sharedInstance().initialize(withUrlScheme: URLScheme, uiOverrideDelegate: nil)
     }
 
     private var devicesFileURL: URL {
@@ -24,8 +24,11 @@ class Garmin: NSObject {
         return URL.applicationSupportDirectory.appendingPathComponent("devices")
     }
 
-    func configure() {
-        ConnectIQ.sharedInstance().initialize(withUrlScheme: URLScheme, uiOverrideDelegate: nil)
+    func registerDevices() {
+        for device in devices {
+            print("Registering for device events from '\(device.friendlyName.debugDescription)'")
+            ConnectIQ.sharedInstance().register(forDeviceEvents: device, delegate: self)
+        }
     }
 
     func handleOpenURL(_ url: URL) -> Bool {
@@ -42,7 +45,7 @@ class Garmin: NSObject {
                     print("status>>> \(ConnectIQ.sharedInstance().getDeviceStatus(device).rawValue)")
                 }
                 self.saveDevicesToFileSystem()
-                devicesChanged?()
+                registerDevices()
                 return true
             }
         }
@@ -74,7 +77,7 @@ class Garmin: NSObject {
             print("No saved devices to restore.")
             devices.removeAll()
         }
-        devicesChanged?()
+        registerDevices()
     }
 }
 

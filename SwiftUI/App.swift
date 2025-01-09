@@ -11,15 +11,13 @@ struct Garmin_ExampleApp_SwiftUI: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(model)
-                .onOpenURL {
-                    print($model.garmin.devicesChanged) // Why do I need this?!
-                    print(model.garmin.handleOpenURL($0))
-                    model.garmin.devicesChanged = {
-                        print("GARMIN: devices changed")
-                    }
-                }
+            NavigationStack {
+                ContentView()
+            }
+            .environmentObject(model)
+            .onOpenURL {
+                print("Opening \($0) — result is \(model.garmin.handleOpenURL($0))")
+            }
         }
     }
 }

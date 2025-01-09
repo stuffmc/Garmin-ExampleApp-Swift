@@ -67,7 +67,7 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "\(self.appInfo.name) on \(self.device.friendlyName)"
+        self.navigationItem.title = "\(self.appInfo.name) on \(self.device.friendlyName.debugDescription)"
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
@@ -137,11 +137,17 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
     
     func sendMessage(_ message: Any) {
         logMessage(">>>>> Sending message: \(message)")
-        ConnectIQ.sharedInstance().sendMessage(message, to: self.appInfo.app, progress: {(sentBytes: UInt32, totalBytes: UInt32) -> Void in
+        ConnectIQ.sharedInstance().sendMessage(
+message,
+ to: self.appInfo.app,
+ progress: {(sentBytes: UInt32, totalBytes: UInt32) -> Void in
             let percent: Double = 100.0 * Double(sentBytes / totalBytes)
-            print("Progress: \(percent)% sent \(sentBytes) bytes of \(totalBytes)")
-            }, completion: {(result: IQSendMessageResult) -> Void in
-                self.logMessage("Send message finished with result: \(NSStringFromSendMessageResult(result))")
+     print("Progress: \(percent)% sent \(sentBytes) bytes of \(totalBytes)")
+ },
+completion: {(result: IQSendMessageResult) -> Void in
+    self.logMessage(
+        "Send message finished with result: \(NSStringFromSendMessageResult(result).debugDescription)"
+    )
         })
     }
     

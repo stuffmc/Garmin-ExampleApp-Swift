@@ -66,7 +66,7 @@ class DeviceManager: NSObject {
                 self.devices.removeAll()
                 for (index, device) in devices.enumerated() {
                     guard let device = device as? IQDevice else { continue }
-                    print("Received device (\(index+1) of \(devices.count): [\(device.uuid), \(device.modelName), \(device.friendlyName)]")
+                    print("Received device (\(index+1) of \(devices.count): [\(device.uuid.debugDescription), \(device.modelName.debugDescription), \(device.friendlyName.debugDescription)]")
                     self.devices.append(device)
                     print("status>>> \(ConnectIQ.sharedInstance().getDeviceStatus(device).rawValue)")
                 }

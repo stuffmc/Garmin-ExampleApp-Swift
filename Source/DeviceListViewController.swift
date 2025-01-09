@@ -59,7 +59,7 @@ class DeviceListViewController: UIViewController, DeviceManagerDelegate, IQDevic
     
     override func viewWillAppear(_ animated: Bool) {
         for device: IQDevice in self.deviceManager.devices {
-            print("Registering for device events from '\(device.friendlyName)'")
+            print("Registering for device events from '\(device.friendlyName.debugDescription)'")
             ConnectIQ.sharedInstance().register(forDeviceEvents: device, delegate: self)
         }
         self.tableView.reloadData()

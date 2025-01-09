@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CC6D0722D302584007F7B45 /* ConnectIQ in Frameworks */ = {isa = PBXBuildFile; productRef = 0CC6D0712D302584007F7B45 /* ConnectIQ */; };
 		F0709DF11E1A097A00D255F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DC71E1A097A00D255F5 /* AppDelegate.swift */; };
 		F0709DF21E1A097A00D255F5 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DC81E1A097A00D255F5 /* AppInfo.swift */; };
 		F0709DF31E1A097A00D255F5 /* AppMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DC91E1A097A00D255F5 /* AppMessageViewController.swift */; };
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CC6D0722D302584007F7B45 /* ConnectIQ in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +204,9 @@
 				Base,
 			);
 			mainGroup = F01F14E81DB5E01C0076EBE6;
+			packageReferences = (
+				0CC6D0702D302584007F7B45 /* XCRemoteSwiftPackageReference "connectiq-companion-app-sdk-ios" */,
+			);
 			productRefGroup = F01F14F21DB5E01C0076EBE6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -456,6 +461,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0CC6D0702D302584007F7B45 /* XCRemoteSwiftPackageReference "connectiq-companion-app-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/garmin/connectiq-companion-app-sdk-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0CC6D0712D302584007F7B45 /* ConnectIQ */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CC6D0702D302584007F7B45 /* XCRemoteSwiftPackageReference "connectiq-companion-app-sdk-ios" */;
+			productName = ConnectIQ;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F01F14E91DB5E01C0076EBE6 /* Project object */;
 }

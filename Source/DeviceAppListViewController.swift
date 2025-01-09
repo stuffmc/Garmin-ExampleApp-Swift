@@ -159,7 +159,7 @@ class DeviceAppListViewController: UIViewController, IQDeviceEventDelegate, UITa
         // need to check the device parameter here. We know it's our device.
         if status != .connected {
             // This page's device is no longer connected. Pop back to the device list.
-            if let navigationController = self.navigationController {
+            if let navigationController {
                 navigationController.popToRootViewController(animated: true)
             }
         }

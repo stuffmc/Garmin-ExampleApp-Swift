@@ -117,7 +117,7 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
         if status != .connected {
             // This page's device is no longer connected. Pop back to the device list.
             ConnectIQ.sharedInstance().unregister(forAllAppMessages: self)
-            if let navigationController = self.navigationController {
+            if let navigationController {
                 navigationController.popToRootViewController(animated: true)
             }
         }
@@ -138,17 +138,17 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
     func sendMessage(_ message: Any) {
         logMessage(">>>>> Sending message: \(message)")
         ConnectIQ.sharedInstance().sendMessage(
-message,
- to: self.appInfo.app,
- progress: {(sentBytes: UInt32, totalBytes: UInt32) -> Void in
-            let percent: Double = 100.0 * Double(sentBytes / totalBytes)
-     print("Progress: \(percent)% sent \(sentBytes) bytes of \(totalBytes)")
- },
-completion: {(result: IQSendMessageResult) -> Void in
-    self.logMessage(
-        "Send message finished with result: \(NSStringFromSendMessageResult(result).debugDescription)"
-    )
-        })
+            message,
+            to: self.appInfo.app,
+            progress: {(sentBytes: UInt32, totalBytes: UInt32) -> Void in
+                let percent: Double = 100.0 * Double(sentBytes / totalBytes)
+                print("Progress: \(percent)% sent \(sentBytes) bytes of \(totalBytes)")
+            },
+            completion: {(result: IQSendMessageResult) -> Void in
+                self.logMessage(
+                    "Send message finished with result: \(NSStringFromSendMessageResult(result).debugDescription)"
+                )
+            })
     }
     
     func logMessage(_ message: String) {

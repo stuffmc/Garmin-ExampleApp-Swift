@@ -52,7 +52,7 @@ class DeviceManager: NSObject {
         // no op
     }
     
-    func handleOpenURL(_ url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func handleOpenURL(_ url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         guard let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
             print("handleOpenURL: Source application value was nil, expecting \(IQGCMBundle); disregarind open request, likely not for us.")
             return false
@@ -61,12 +61,12 @@ class DeviceManager: NSObject {
             
             let devices = ConnectIQ.sharedInstance().parseDeviceSelectionResponse(from: url)
             dump(devices)
-            if let devices = devices, devices.count > 0 {
+            if let devices, !devices.isEmpty {
                 print("Forgetting \(Int(self.devices.count)) known devices.")
                 self.devices.removeAll()
                 for (index, device) in devices.enumerated() {
                     guard let device = device as? IQDevice else { continue }
-                    print("Received device (\(index+1) of \(devices.count): [\(device.uuid.debugDescription), \(device.modelName.debugDescription), \(device.friendlyName.debugDescription)]")
+                    print("Received device (\(index + 1) of \(devices.count): [\(device.uuid.debugDescription), \(device.modelName.debugDescription), \(device.friendlyName.debugDescription)]")
                     self.devices.append(device)
                     print("status>>> \(ConnectIQ.sharedInstance().getDeviceStatus(device).rawValue)")
                 }
@@ -92,34 +92,30 @@ class DeviceManager: NSObject {
             print("No device restoration file found.")
             return
         }
-        
-        if restoredDevices.count > 0 {
+
+        if !restoredDevices.isEmpty {
             print("Restored saved devices:")
             for device in restoredDevices {
                 print("\(device)")
             }
             self.devices = restoredDevices
-        }
-        else {
+        } else {
             print("No saved devices to restore.")
             self.devices.removeAll()
         }
         self.delegate!.devicesChanged()
     }
     
-    var devicesFileURL: URL {
-        let paths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
-        let appSupportDirectory = URL(fileURLWithPath: paths[0])
-        let dirExists = (try? appSupportDirectory.checkResourceIsReachable()) ?? false
+    private var devicesFileURL: URL {
+        let dirExists = (try? URL.applicationSupportDirectory.checkResourceIsReachable()) ?? false
         if !dirExists {
-            print("DeviceManager.devicesFilePath appSupportDirectory \(appSupportDirectory) does not exist, creating... ")
+            print("DeviceManager.devicesFilePath appSupportDirectory \(URL.applicationSupportDirectory) does not exist, creating... ")
             do {
-                try FileManager.default.createDirectory(at: appSupportDirectory, withIntermediateDirectories: true, attributes: nil)
-            }
-            catch let error {
-                print("There was an error creating the directory \(appSupportDirectory) with error: \(error)")
+                try FileManager.default.createDirectory(at: URL.applicationSupportDirectory, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("There was an error creating the directory \(URL.applicationSupportDirectory) with error: \(error)")
             }
         }
-        return appSupportDirectory.appendingPathComponent(kDevicesFileName)
+        return URL.applicationSupportDirectory.appendingPathComponent(kDevicesFileName)
     }
 }

@@ -53,9 +53,9 @@ class DeviceAppListViewController: UIViewController, IQDeviceEventDelegate, UITa
         let gameApp = IQApp(uuid: UUID(uuidString: "3bc0423d-5f82-46bb-8396-e714f608232f"), store: UUID(uuidString: "8ecc61f6-541e-45e7-b227-278a39abefd8"), device: device)
 
 
-        self.appInfos[loopbackApp!.uuid] = AppInfo(name: "Loopback Test App", iqApp: loopbackApp!)
-        self.appInfos[stringApp!.uuid] = AppInfo(name: "String Test App", iqApp: stringApp!)
-        self.appInfos[gameApp!.uuid] = AppInfo(name: "2048 App", iqApp: gameApp!)
+        self.appInfos[loopbackApp!.uuid!] = AppInfo(name: "Loopback Test App", iqApp: loopbackApp!)
+        self.appInfos[stringApp!.uuid!] = AppInfo(name: "String Test App", iqApp: stringApp!)
+        self.appInfos[gameApp!.uuid!] = AppInfo(name: "2048 App", iqApp: gameApp!)
     }
     
     override func viewDidLoad() {

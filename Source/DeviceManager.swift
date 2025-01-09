@@ -106,7 +106,7 @@ class DeviceManager: NSObject {
     }
     
     func devicesFilePath() -> String {
-        var paths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
         let appSupportDirectory = URL(fileURLWithPath: paths[0])
         let dirExists = (try? appSupportDirectory.checkResourceIsReachable()) ?? false
         if !dirExists {

@@ -3,12 +3,13 @@ import ConnectIQ
 import UIKit
 
 class Garmin: NSObject {
-    private let URLScheme = "lactate-express"
+    private let URLScheme = "garmin-exampleapp-swiftui"
     var devices = [IQDevice]()
 
     override init() {
         super.init()
         ConnectIQ.sharedInstance().initialize(withUrlScheme: URLScheme, uiOverrideDelegate: nil)
+        restoreDevicesFromFileSystem()
     }
 
     private var devicesFileURL: URL {

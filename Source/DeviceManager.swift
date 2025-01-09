@@ -80,13 +80,15 @@ class DeviceManager: NSObject {
     
     func saveDevicesToFileSystem() {
         print("Saving known devices.")
-        if !NSKeyedArchiver.archiveRootObject(devices, toFile: self.devicesFilePath()) {
+        do {
+            try NSKeyedArchiver.archivedData(withRootObject: devices, requiringSecureCoding: false).write(to: devicesFileURL)
+        } catch {
             print("Failed to save devices file.")
         }
     }
     
     func restoreDevicesFromFileSystem() {
-        guard let restoredDevices = NSKeyedUnarchiver.unarchiveObject(withFile: self.devicesFilePath()) as? [IQDevice] else {
+        guard let restoredDevices = NSKeyedUnarchiver.unarchiveObject(withFile: self.devicesFileURL.absoluteString) as? [IQDevice] else {
             print("No device restoration file found.")
             return
         }
@@ -105,7 +107,7 @@ class DeviceManager: NSObject {
         self.delegate!.devicesChanged()
     }
     
-    func devicesFilePath() -> String {
+    var devicesFileURL: URL {
         let paths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
         let appSupportDirectory = URL(fileURLWithPath: paths[0])
         let dirExists = (try? appSupportDirectory.checkResourceIsReachable()) ?? false
@@ -118,6 +120,6 @@ class DeviceManager: NSObject {
                 print("There was an error creating the directory \(appSupportDirectory) with error: \(error)")
             }
         }
-        return appSupportDirectory.appendingPathComponent(kDevicesFileName).absoluteString
+        return appSupportDirectory.appendingPathComponent(kDevicesFileName)
     }
 }

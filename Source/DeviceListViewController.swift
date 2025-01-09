@@ -108,6 +108,8 @@ class DeviceListViewController: UIViewController, DeviceManagerDelegate, IQDevic
         case .connected:
             cell.statusLabel.text! = "Connected"
             cell.enabled = true
+        @unknown default:
+            fatalError("Unknown status \(status)")
         }
         return cell
     }

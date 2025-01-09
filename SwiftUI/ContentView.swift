@@ -40,6 +40,8 @@ struct ContentView: View {
                 Button("Find Devices") {
                     ConnectIQ.sharedInstance().showDeviceSelection()
                 }
+                .font(.largeTitle)
+                .buttonStyle(.borderedProminent)
                 .frame(maxWidth: .infinity)
             }
         }

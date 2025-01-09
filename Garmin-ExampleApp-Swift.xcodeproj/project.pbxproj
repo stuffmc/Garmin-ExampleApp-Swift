@@ -24,9 +24,7 @@
 		F0709E0E1E1A097A00D255F5 /* DeviceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DE81E1A097A00D255F5 /* DeviceTableCellView.swift */; };
 		F0709E0F1E1A097A00D255F5 /* DeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0709DE91E1A097A00D255F5 /* DeviceTableViewCell.xib */; };
 		F0709E121E1A097A00D255F5 /* TableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DEC1E1A097A00D255F5 /* TableEntry.swift */; };
-		F0709E221E1A0C4800D255F5 /* ConnectIQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; };
 		F0709E251E1A0CDD00D255F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0709E231E1A0CDD00D255F5 /* LaunchScreen.storyboard */; };
-		F0709E271E1A0D1200D255F5 /* ConnectIQ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,7 +34,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F0709E271E1A0D1200D255F5 /* ConnectIQ.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,7 +60,6 @@
 		F0709DE91E1A097A00D255F5 /* DeviceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DeviceTableViewCell.xib; path = Source/DeviceTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		F0709DEB1E1A097A00D255F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
 		F0709DEC1E1A097A00D255F5 /* TableEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableEntry.swift; path = Source/TableEntry.swift; sourceTree = SOURCE_ROOT; };
-		F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ConnectIQ.framework; sourceTree = "<group>"; };
 		F0709E241E1A0CDD00D255F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Source/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -72,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0709E221E1A0C4800D255F5 /* ConnectIQ.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				F01F14F31DB5E01C0076EBE6 /* Source */,
-				F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */,
 				F01F14F21DB5E01C0076EBE6 /* Products */,
 			);
 			sourceTree = "<group>";

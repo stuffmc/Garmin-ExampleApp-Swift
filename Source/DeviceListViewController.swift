@@ -75,7 +75,11 @@ class DeviceListViewController: UIViewController, DeviceManagerDelegate, IQDevic
     }
     
     @IBAction func findDevicesButtonPressed(_ sender: AnyObject) {
+#if targetEnvironment(simulator)
+        UIApplication.shared.open(URL(string: "gcm-ciq-sim://")!) // First deploy Garmin-Connect-Simulator once!
+#else
         ConnectIQ.sharedInstance().showDeviceSelection()
+#endif
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

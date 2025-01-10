@@ -22,6 +22,9 @@ extension IQDeviceStatus {
 
 struct ContentView: View {
     @EnvironmentObject private var appModel: AppModel
+#if targetEnvironment(simulator)
+    @Environment(\.openURL) private var openURL
+#endif
 
     var body: some View {
         List {
@@ -38,7 +41,11 @@ struct ContentView: View {
                 }
             } footer: {
                 Button("Find Devices") {
+#if targetEnvironment(simulator)
+                    openURL(URL(string: "gcm-ciq-sim://")!) // First deploy Garmin-Connect-Simulator once!
+#else
                     ConnectIQ.sharedInstance().showDeviceSelection()
+#endif
                 }
                 .font(.largeTitle)
                 .buttonStyle(.borderedProminent)

@@ -127,9 +127,8 @@ class DeviceAppListViewController: UIViewController, IQDeviceEventDelegate, UITa
         let appInfo = self.appInfos[appKey] as! AppInfo
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "iqappcell", for: indexPath) as! AppTableViewCell
         cell.nameLabel.text = appInfo.name
-        let installed: Bool = appInfo.status?.isInstalled ?? false
-        cell.installedLabel.text = installed ? "Installed (v\(appInfo.status!.version))" : "Not installed"
-        cell.enabled = installed
+        cell.installedLabel.text = appInfo.installedText
+        cell.enabled = appInfo.isInstalled
         cell.accessoryType = .detailDisclosureButton
         return cell
     }

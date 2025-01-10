@@ -62,6 +62,13 @@ class AppInfo: NSObject {
         })
     }
 
+    var isInstalled: Bool {
+        status?.isInstalled ?? false
+    }
+
+    var installedText: String {
+        isInstalled ? "Installed (v\(status?.version ?? 0))" : "Not installed"
+    }
 
     func updateStatus(withCompletion completion: @escaping (_ appInfo: AppInfo) -> Void) {
         ConnectIQ.sharedInstance().getAppStatus(self.app, completion: { (appStatus: IQAppStatus?) in

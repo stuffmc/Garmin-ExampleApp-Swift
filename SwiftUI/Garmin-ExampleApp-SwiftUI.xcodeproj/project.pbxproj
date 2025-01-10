@@ -12,6 +12,8 @@
 		0CC6D0A12D304FBF007F7B45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CC6D09C2D304FBF007F7B45 /* Assets.xcassets */; };
 		0CC6D0A32D305029007F7B45 /* Garmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC6D0A22D305029007F7B45 /* Garmin.swift */; };
 		0CC6D0A62D305050007F7B45 /* ConnectIQ in Frameworks */ = {isa = PBXBuildFile; productRef = 0CC6D0A52D305050007F7B45 /* ConnectIQ */; };
+		0CC6D0D22D316D0E007F7B45 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC6D0D12D316D0E007F7B45 /* AppInfo.swift */; };
+		0CC6D0D42D3179DA007F7B45 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC6D0D32D3179DA007F7B45 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		0CC6D09E2D304FBF007F7B45 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		0CC6D0A22D305029007F7B45 /* Garmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garmin.swift; sourceTree = "<group>"; };
 		0CC6D0A72D307553007F7B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CC6D0D12D316D0E007F7B45 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppInfo.swift; path = ../Source/AppInfo.swift; sourceTree = SOURCE_ROOT; };
+		0CC6D0D32D3179DA007F7B45 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +45,9 @@
 				0CC6D0A72D307553007F7B45 /* Info.plist */,
 				0CC6D09C2D304FBF007F7B45 /* Assets.xcassets */,
 				0CC6D09D2D304FBF007F7B45 /* ContentView.swift */,
+				0CC6D0D32D3179DA007F7B45 /* DetailView.swift */,
 				0CC6D09E2D304FBF007F7B45 /* App.swift */,
+				0CC6D0D12D316D0E007F7B45 /* AppInfo.swift */,
 				0CC6D0A22D305029007F7B45 /* Garmin.swift */,
 				0CC6D07D2D304F08007F7B45 /* Products */,
 			);
@@ -133,7 +139,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CC6D09F2D304FBF007F7B45 /* App.swift in Sources */,
+				0CC6D0D22D316D0E007F7B45 /* AppInfo.swift in Sources */,
 				0CC6D0A02D304FBF007F7B45 /* ContentView.swift in Sources */,
+				0CC6D0D42D3179DA007F7B45 /* DetailView.swift in Sources */,
 				0CC6D0A32D305029007F7B45 /* Garmin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

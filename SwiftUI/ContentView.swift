@@ -1,8 +1,16 @@
 import ConnectIQ
 import SwiftUI
 
-extension IQDeviceStatus {
-    var text: String {
+extension IQDeviceStatus: @retroactive Identifiable, @retroactive CaseIterable {
+    public static var allCases = [
+        IQDeviceStatus.invalidDevice,
+        .bluetoothNotReady,
+        .notFound,
+        .notConnected,
+        .connected
+    ]
+
+    public var id: String {
         switch self {
         case .invalidDevice:
             "Invalid Device"
@@ -24,6 +32,9 @@ struct ContentView: View {
     @EnvironmentObject private var appModel: AppModel
 #if targetEnvironment(simulator)
     @Environment(\.openURL) private var openURL
+    @State private var status = IQDeviceStatus.connected
+#else
+    private var status = IQDeviceStatus.bluetoothNotReady
 #endif
 
     var body: some View {
@@ -31,13 +42,23 @@ struct ContentView: View {
             Section {
                 ForEach(appModel.garmin.devices, id: \.uuid) { device in
                     let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
-                    if status == .connected {
-                        NavigationLink(destination: Text(device.friendlyName)) {
+                    if status == .connected || self.status == .connected { // self.status is only for Simulator
+                        NavigationLink(destination: DetailView(device: device)) {
                             view(for: device, status: status)
                         }
                     } else {
                         view(for: device, status: status)
                     }
+                }
+            } header: {
+                if !appModel.garmin.devices.isEmpty {
+                    Picker("Simulated Status", selection: $status) {
+                        ForEach(IQDeviceStatus.allCases) {
+                            Text($0.id)
+                                .tag($0)
+                        }
+                    }
+                    .pickerStyle(.wheel)
                 }
             } footer: {
                 Button("Find Devices") {
@@ -67,10 +88,11 @@ struct ContentView: View {
                 Text(device.modelName)
                     .font(.caption)
             }
-            Text(status.text)
+            Text(status.id)
         }
     }
 }
+
 
 #Preview {
     ContentView()

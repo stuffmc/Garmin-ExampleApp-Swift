@@ -6,31 +6,28 @@ struct DetailView: View {
     var device: IQDevice
 
     var body: some View {
-        List {
-            Section {
-                ForEach(appModel.appInfos(for: device), id: \.app) { info in
-                    NavigationLink {
+        List(appModel.appInfos(for: device), id: \.app) { info in
+            VStack {
+                HStack {
+                    VStack(alignment: .leading) {
                         Text(info.name)
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(info.name)
-                                Text(info.installedText)
-                                    .font(.caption)
-                            }
-                        }
-                        Button {
-                            ConnectIQ.sharedInstance().showStore(for: info.app) // Useless on the Simulator
-                        } label: {
-                            Image(systemName: "info.circle")
-                        }
-                        .buttonStyle(.borderless)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                            .frame(width: 200, alignment: .leading)
+                        Text(info.installedText)
+                            .font(.caption)
                     }
+                    Button {
+                        ConnectIQ.sharedInstance().showStore(for: info.app) // Useless on the Simulator
+                    } label: {
+                        Image(systemName: "info.circle")
+                    }
+                    .buttonStyle(.borderless)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
-            } footer : {
-                Text("[Install](gcm-ciq://ui?generic)")
-                    .modifier(ProminentButtonModifier())
+                if !info.isInstalled {
+                    Text("[Install](gcm-ciq://ui?generic)")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, minHeight: 30, alignment: .top)
+                }
             }
         }
         .navigationTitle(device.friendlyName)

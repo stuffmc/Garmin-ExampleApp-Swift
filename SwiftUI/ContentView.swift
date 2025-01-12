@@ -71,7 +71,9 @@ struct ContentView: View {
                     }
 #endif
                 }
-                .modifier(ProminentButtonModifier())
+                .font(.largeTitle)
+                .buttonStyle(.borderedProminent)
+                .frame(maxWidth: .infinity, minHeight: 100)
             }
         }
         .navigationTitle("GarminUI")

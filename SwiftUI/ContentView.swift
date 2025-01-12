@@ -98,6 +98,8 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
-        .environmentObject(AppModel())
+    NavigationStack {
+        ContentView()
+            .environmentObject(AppModel())
+    }
 }

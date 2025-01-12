@@ -53,12 +53,7 @@ class DeviceManager: NSObject {
     }
     
     func handleOpenURL(_ url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        guard let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
-            print("handleOpenURL: Source application value was nil, expecting \(IQGCMBundle); disregarind open request, likely not for us.")
-            return false
-        }
-        if (url.scheme! == ReturnURLScheme) && (sourceApplication == IQGCMBundle) {
-            
+        if url.scheme! == ReturnURLScheme {
             let devices = ConnectIQ.sharedInstance().parseDeviceSelectionResponse(from: url)
             dump(devices)
             if let devices, !devices.isEmpty {

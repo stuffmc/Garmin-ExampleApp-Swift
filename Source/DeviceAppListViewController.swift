@@ -111,7 +111,7 @@ class DeviceAppListViewController: UIViewController, IQDeviceEventDelegate, UITa
             return
         }
         print("Installing '\(currentAppInfo.name)'")
-        ConnectIQ.sharedInstance().showStore(for: currentAppInfo.app)
+        ConnectIQ.sharedInstance().showStore(for: currentAppInfo.app)  // Useless on the Simulator
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

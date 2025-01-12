@@ -33,7 +33,6 @@ struct ContentView: View {
     var devices = [IQDevice]()
 
 #if targetEnvironment(simulator)
-    @Environment(\.openURL) private var openURL
     @State private var status = IQDeviceStatus.connected
 #else
     private var status = IQDeviceStatus.bluetoothNotReady
@@ -63,11 +62,13 @@ struct ContentView: View {
                     .pickerStyle(.wheel)
                 }
             } footer: {
-                Button("Find Devices") {
+                Group {
 #if targetEnvironment(simulator)
-                    openURL(URL(string: "gcm-ciq-sim://")!) // First deploy Garmin-Connect-Simulator once!
+                    Text("[Find Devices](gcm-ciq://ui?device-select)") // First deploy Garmin-Connect-Simulator once!
 #else
-                    ConnectIQ.sharedInstance().showDeviceSelection()
+                    Button("Find Devices") {
+                        ConnectIQ.sharedInstance().showDeviceSelection()
+                    }
 #endif
                 }
                 .modifier(ProminentButtonModifier())

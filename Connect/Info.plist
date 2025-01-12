@@ -11,7 +11,7 @@
 			<string>com.carrascomolina.Garmin-Connect-Simulator</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>gcm-ciq-sim</string>
+				<string>gcm-ciq</string>
 			</array>
 		</dict>
 	</array>

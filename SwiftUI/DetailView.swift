@@ -6,26 +6,34 @@ struct DetailView: View {
     var device: IQDevice
 
     var body: some View {
-        List(appModel.appInfos(for: device), id: \.app) { info in
-            NavigationLink {
-                Text(info.name)
-            } label: {
-                HStack {
-                    VStack(alignment: .leading) {
+        List {
+            Section {
+                ForEach(appModel.appInfos(for: device), id: \.app) { info in
+                    NavigationLink {
                         Text(info.name)
-                        Text(info.installedText)
-                            .font(.caption)
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(info.name)
+                                Text(info.installedText)
+                                    .font(.caption)
+                            }
+                        }
+                        Button {
+                            ConnectIQ.sharedInstance().showStore(for: info.app) // Useless on the Simulator
+                        } label: {
+                            Image(systemName: "info.circle")
+                        }
+                        .buttonStyle(.borderless)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
-                Button {
-                    ConnectIQ.sharedInstance().showStore(for: info.app)
-                } label: {
-                    Image(systemName: "info.circle")
-                }
-                .buttonStyle(.borderless)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            } footer : {
+                Text("[Install](gcm-ciq://ui?generic)")
+                    .modifier(ProminentButtonModifier())
             }
         }
+        .navigationTitle(device.friendlyName)
     }
 }
 

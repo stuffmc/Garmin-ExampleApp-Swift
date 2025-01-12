@@ -70,11 +70,10 @@ struct ContentView: View {
                     ConnectIQ.sharedInstance().showDeviceSelection()
 #endif
                 }
-                .font(.largeTitle)
-                .buttonStyle(.borderedProminent)
-                .frame(maxWidth: .infinity)
+                .modifier(ProminentButtonModifier())
             }
         }
+        .navigationTitle("GarminUI")
         .onAppear {
             appModel.garmin.registerDevices()
         }
@@ -90,6 +89,7 @@ struct ContentView: View {
                 Text(device.modelName)
                     .font(.caption)
             }
+            Spacer()
             Text(status.id)
         }
     }

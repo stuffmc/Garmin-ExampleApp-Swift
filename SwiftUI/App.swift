@@ -18,6 +18,15 @@ final class AppModel: ObservableObject {
     }
 }
 
+struct ProminentButtonModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .buttonStyle(.borderedProminent)
+            .frame(maxWidth: .infinity, minHeight: 100)
+    }
+}
+
 @main
 struct Garmin_ExampleApp_SwiftUI: App {
     @StateObject private var model = AppModel()

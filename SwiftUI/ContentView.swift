@@ -30,6 +30,8 @@ extension IQDeviceStatus: @retroactive Identifiable, @retroactive CaseIterable {
 
 struct ContentView: View {
     @EnvironmentObject private var appModel: AppModel
+    var devices = [IQDevice]()
+
 #if targetEnvironment(simulator)
     @Environment(\.openURL) private var openURL
     @State private var status = IQDeviceStatus.connected
@@ -40,7 +42,7 @@ struct ContentView: View {
     var body: some View {
         List {
             Section {
-                ForEach(appModel.garmin.devices, id: \.uuid) { device in
+                ForEach(devices, id: \.uuid) { device in
                     let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
                     if status == .connected || self.status == .connected { // self.status is only for Simulator
                         NavigationLink(destination: DetailView(device: device)) {
@@ -51,7 +53,7 @@ struct ContentView: View {
                     }
                 }
             } header: {
-                if !appModel.garmin.devices.isEmpty {
+                if !devices.isEmpty {
                     Picker("Simulated Status", selection: $status) {
                         ForEach(IQDeviceStatus.allCases) {
                             Text($0.id)

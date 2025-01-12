@@ -21,14 +21,16 @@ final class AppModel: ObservableObject {
 @main
 struct Garmin_ExampleApp_SwiftUI: App {
     @StateObject private var model = AppModel()
+    @State private var devices = [IQDevice]()
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ContentView()
+                ContentView(devices: devices)
             }
             .onOpenURL {
                 print("Opening \($0) — result is \(model.garmin.handleOpenURL($0))")
+                devices = model.garmin.devices
             }
             .environmentObject(model)
         }

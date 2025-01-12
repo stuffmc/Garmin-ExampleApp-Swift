@@ -146,9 +146,13 @@ class DeviceAppListViewController: UIViewController, IQDeviceEventDelegate, UITa
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let appKey = self.appInfos.allKeys[indexPath.row] as! UUID
         let appInfo = self.appInfos[appKey] as! AppInfo
+#if targetEnvironment(simulator)
+        UIApplication.shared.open(URL(string: "gcm-ciq://?generic")!) // First deploy Garmin-Connect-Simulator once!
+#else
         ConnectIQ.sharedInstance().showStore(for: appInfo.app)
+#endif
     }
-    
+
     // --------------------------------------------------------------------------------
     // MARK: - METHODS (IQDeviceEventDelegate)
     // --------------------------------------------------------------------------------
